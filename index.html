@@ -1,125 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P3FQ3VSS');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P3FQ3VSS');</script>
   <meta charset="UTF-8" />
-  <title>GA4 Test Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - GA4 Learning Lab</title>
   
-
   <style>
-    body {
-      font-family: Arial;
-      padding: 40px;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    button {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
+    body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; line-height: 1.6; color: #333; }
+    nav { background: #f8f9fa; padding: 15px; margin-bottom: 30px; border-radius: 8px; border: 1px solid #ddd; }
+    section { margin-bottom: 40px; padding: 20px; border: 1px solid #eee; border-radius: 8px; }
+    button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+    button:hover { background: #0056b3; }
+    code { background: #f4f4f4; padding: 2px 5px; }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3FQ3VSS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3FQ3VSS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <h1>Google Analytics 4 Test Site</h1>
+  <nav>
+    <strong>Navigation:</strong> 
+    <a href="about.html" style="margin-left: 15px; color: #007bff; text-decoration: none; font-weight: bold;">Go to About Page →</a>
+  </nav>
 
-  <!-- BUTTON CLICK -->
+  <h1>GA4 & GTM Learning Lab (Home)</h1>
+  <p>This site uses <code>dataLayer.push</code> to send events to GTM.</p>
+
   <section>
-    <h2>Button Click Event</h2>
-    <button onclick="trackButton()">Click Me</button>
+    <h2>1. Custom Event</h2>
+    <p>This button sends a custom event name and a parameter.</p>
+    <button onclick="window.dataLayer.push({
+      'event': 'cta_click',
+      'button_location': 'home_hero',
+      'button_text': 'Learn More'
+    })">Learn More</button>
   </section>
 
-  <!-- LINK CLICK -->
   <section>
-    <h2>Outbound Link</h2>
-    <a href="https://google.com" target="_blank" onclick="trackLink()">Visit Google</a>
-  </section>
-
-  <!-- FORM SUBMIT -->
-  <section>
-    <h2>Form Submit</h2>
-    <form onsubmit="trackForm(event)">
-      <input type="text" placeholder="Your name" required />
-      <br><br>
-      <button type="submit">Submit</button>
+    <h2>2. Lead Form</h2>
+    <form onsubmit="handleFormSubmit(event)">
+      <input type="email" id="emailInput" placeholder="Enter email" required style="padding: 8px;">
+      <button type="submit">Subscribe</button>
     </form>
   </section>
 
-  <!-- FILE DOWNLOAD -->
-  <section>
-    <h2>File Download</h2>
-    <a href="sample.pdf" download onclick="trackDownload()">Download PDF</a>
+  <section style="height: 800px; background: linear-gradient(#fff, #f0f0f0);">
+    <h2>3. Scroll Test Area</h2>
+    <p>Scroll down to see the footer. We will track when the footer becomes visible.</p>
   </section>
 
-  <!-- VIDEO -->
-  <section>
-    <h2>Video Play</h2>
-    <video width="300" controls onplay="trackVideo()">
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
-  </section>
-
-  <!-- SCROLL -->
-  <section style="height: 1500px;">
-    <h2>Scroll Test</h2>
-    <p>Scroll down to trigger scroll event</p>
-  </section>
+  <footer id="tracking-footer" style="padding: 20px; background: #333; color: white;">
+    <p>You reached the bottom! This triggers a <code>footer_view</code> event.</p>
+  </footer>
 
   <script>
-    function trackButton() {
-      gtag('event', 'button_click', {
-        event_category: 'interaction',
-        event_label: 'click_me_button'
-      });
-    }
-
-    function trackLink() {
-      gtag('event', 'outbound_click', {
-        link_url: 'https://google.com'
-      });
-    }
-
-    function trackForm(e) {
+    // Form Handling Logic
+    function handleFormSubmit(e) {
       e.preventDefault();
-      gtag('event', 'form_submit', {
-        form_name: 'test_form'
+      window.dataLayer.push({
+        'event': 'form_submit',
+        'form_id': 'newsletter_main',
+        'timestamp': new Date().toISOString()
       });
-      alert("Form submitted!");
+      alert("Form Data pushed to DataLayer!");
     }
 
-    function trackDownload() {
-      gtag('event', 'file_download', {
-        file_name: 'sample.pdf'
+    // Intersection Observer for Scroll Tracking
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          window.dataLayer.push({ 'event': 'footer_reached' });
+        }
       });
-    }
+    }, { threshold: 0.5 });
 
-    function trackVideo() {
-      gtag('event', 'video_play', {
-        video_title: 'Big Buck Bunny'
-      });
-    }
-
-    // Scroll event
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 500) {
-        gtag('event', 'scroll_50', {
-          percent_scrolled: 50
-        });
-      }
-    });
+    observer.observe(document.getElementById('tracking-footer'));
   </script>
-
 </body>
 </html>

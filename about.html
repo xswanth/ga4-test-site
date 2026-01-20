@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P3FQ3VSS');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - GA4 Learning Lab</title>
+  
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; line-height: 1.6; }
+    .back-btn { display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none; }
+    .info-card { background: #e7f3fe; border-left: 5px solid #2196F3; padding: 20px; margin-top: 20px; }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3FQ3VSS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <h1>About This Project</h1>
+  
+  <div class="info-card">
+    <h3>Multi-Page Tracking Active</h3>
+    <p>When you clicked the link to get here, GTM fired a new <code>page_view</code>. Check your <strong>GA4 Realtime Report</strong> to see the path move from <code>/index.html</code> to <code>/about.html</code>.</p>
+  </div>
+
+  <section style="margin-top: 40px;">
+    <h2>Test an "About Page" Specific Event</h2>
+    <button onclick="window.dataLayer.push({
+      'event': 'contact_intent',
+      'method': 'button_click'
+    })">Request Contact Info</button>
+  </section>
+
+</body>
+</html>
