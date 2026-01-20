@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GA4 Test Website</title>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Google Analytics 4 Test Site</h1>
+
+  <!-- BUTTON CLICK -->
+  <section>
+    <h2>Button Click Event</h2>
+    <button onclick="trackButton()">Click Me</button>
+  </section>
+
+  <!-- LINK CLICK -->
+  <section>
+    <h2>Outbound Link</h2>
+    <a href="https://google.com" target="_blank" onclick="trackLink()">Visit Google</a>
+  </section>
+
+  <!-- FORM SUBMIT -->
+  <section>
+    <h2>Form Submit</h2>
+    <form onsubmit="trackForm(event)">
+      <input type="text" placeholder="Your name" required />
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- FILE DOWNLOAD -->
+  <section>
+    <h2>File Download</h2>
+    <a href="sample.pdf" download onclick="trackDownload()">Download PDF</a>
+  </section>
+
+  <!-- VIDEO -->
+  <section>
+    <h2>Video Play</h2>
+    <video width="300" controls onplay="trackVideo()">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- SCROLL -->
+  <section style="height: 1500px;">
+    <h2>Scroll Test</h2>
+    <p>Scroll down to trigger scroll event</p>
+  </section>
+
+  <script>
+    function trackButton() {
+      gtag('event', 'button_click', {
+        event_category: 'interaction',
+        event_label: 'click_me_button'
+      });
+    }
+
+    function trackLink() {
+      gtag('event', 'outbound_click', {
+        link_url: 'https://google.com'
+      });
+    }
+
+    function trackForm(e) {
+      e.preventDefault();
+      gtag('event', 'form_submit', {
+        form_name: 'test_form'
+      });
+      alert("Form submitted!");
+    }
+
+    function trackDownload() {
+      gtag('event', 'file_download', {
+        file_name: 'sample.pdf'
+      });
+    }
+
+    function trackVideo() {
+      gtag('event', 'video_play', {
+        video_title: 'Big Buck Bunny'
+      });
+    }
+
+    // Scroll event
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        gtag('event', 'scroll_50', {
+          percent_scrolled: 50
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
