@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <title>GA4 Test Website</title>
+  
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TN35PRCFR"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    gtag('config', 'G-8TN35PRCFR');
+    </script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
